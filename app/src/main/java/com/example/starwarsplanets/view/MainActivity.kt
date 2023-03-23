@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPlanetData() {
-        mDataBase = FirebaseDatabase.getInstance().getReference("Planets")
+        mDataBase = FirebaseDatabase.getInstance().getReference("Sheet2")
         mDataBase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
