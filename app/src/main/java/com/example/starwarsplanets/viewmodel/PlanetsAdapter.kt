@@ -1,6 +1,7 @@
 package com.example.starwarsplanets.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.starwarsplanets.R
 import com.example.starwarsplanets.databinding.PlanetListBinding
 import com.example.starwarsplanets.model.PlanetData
+import com.example.starwarsplanets.view.NewActivity
 
 
 class PlanetsAdapter (
@@ -32,6 +34,20 @@ class PlanetsAdapter (
     }
 
     override fun onBindViewHolder(holder: PlanetViewHolder, position: Int) {
+        val newList = planetList[position]
         holder.v.isPlanets = planetList[position]
+        holder.v.root.setOnClickListener {
+            val planetImage = newList.planetImage
+            val planetName = newList.planetName
+            val planetType = newList.planetType
+            val planetDescription = newList.planetDescription
+
+            val mIntent = Intent(c, NewActivity::class.java)
+            mIntent.putExtra("planetImage", planetImage)
+            mIntent.putExtra("planetName", planetName)
+            mIntent.putExtra("planetType", planetType)
+            mIntent.putExtra("planetDescription", planetDescription)
+            c.startActivity(mIntent)
+        }
     }
 }
